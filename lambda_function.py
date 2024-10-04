@@ -1,4 +1,6 @@
-
+#This is an SNS event listener for AWS Lambda
+#It runs in the standard python environment, so no venv needed
+#Just set the SCALYR_API_KEY in lambda with a dataset.com API key, write permissions needed. 
 
 import json
 import os
@@ -57,9 +59,7 @@ def lambda_handler(event, context):
         'Authorization': f'Bearer {api_key}',
         'Content-Type': 'application/json',
         'server-host': 'AWS_SNS' #hostname1
-
     }
-
 
     session_guid = str(uuid.uuid4())
     events_data = {
@@ -69,9 +69,7 @@ def lambda_handler(event, context):
             "logfile": "lambda_logs",
             "parser": "lambda-parser"
         },
-
         "events": []
-
     }
 
     try:
